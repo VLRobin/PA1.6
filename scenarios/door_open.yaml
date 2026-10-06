@@ -2,9 +2,9 @@ env:
   base: 8.0
   amplitude: 1.0
   period_s: 5400
-  door_drop_C: 25.0
   door_start_s: 900
   door_duration_s: 400
+  door_exchange_tau_s: 600
 
 sensor:
   sigma: 0.25

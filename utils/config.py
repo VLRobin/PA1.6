@@ -6,9 +6,9 @@ class EnvConfig:
     base: float = 5.0
     amplitude: float = 2.0
     period_s: float = 7200.0
-    door_drop_C: float = 5.0
     door_start_s: float = 1200.0
     door_duration_s: float = 120.0
+    door_exchange_tau_s: float = 600.0
 
 @dataclass
 class SensorConfig:

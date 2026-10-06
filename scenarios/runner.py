@@ -20,9 +20,9 @@ def run_scenario(scenario_path: str):
         base=scenario.env.base,
         amplitude=scenario.env.amplitude,
         period_s=scenario.env.period_s,
-        door_drop_C=scenario.env.door_drop_C,
         door_start_s=scenario.env.door_start_s,
         door_duration_s=scenario.env.door_duration_s,
+        door_exchange_tau_s=scenario.env.door_exchange_tau_s,
     )
 
     sensor = TempSensor(sigma=scenario.sensor.sigma, bias=scenario.sensor.bias,
@@ -94,7 +94,9 @@ def run_scenario(scenario_path: str):
         log["upper"].append(upper)
 
         T = step_room(T, heater, T_out, scenario.model.R, scenario.model.C, scenario.model.P,
-                      dt, scenario.model.process_sigma, rng)
+                      dt, scenario.model.process_sigma, rng,
+                      door_open=env.is_door_open(t),
+                      door_exchange_tau_s=scenario.env.door_exchange_tau_s)
 
     # Write CSV
     ts = time.strftime("%Y%m%d-%H%M%S")

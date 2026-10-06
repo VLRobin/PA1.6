@@ -7,7 +7,7 @@ Your goal is to use AI to help you write the code for the thermostat. This proje
 ## Assignment Description
 A thermostat is a device that regulates the temperature of a system so that the system's temperature is maintained near a desired setpoint. The thermostat will control the temperature of a room by turning a heater on and off based on the current temperature and a desired setpoint. There are two main strategies for controlling the heater: a simple on/off controller and a predictive on/off controller. You will implement the on/off controller (the predictive on/off controller is implemented for you) and compare their performance. This requires you to implement some auxiliary functions in other modules as well.
 
-In this simulation, the room temperature is affected by the heater and the outside temperature. Moreover, there is a "door opening" event that substantially drops the temperature. You can control all of these factors in the scenario files located in the `scenarios` folder. Two example scenarios are provided already: `door_open.yaml` includes a door opening event using a simple onoff thermostat, and `cold_morning.yaml` provides an especially cold morning with a predictive onoff thermostat.
+In this simulation, the room temperature is affected by the heater and the outside temperature. A "door opening" event increases heat exchange between the room and the outside, cooling the room while leaving the outside-temperature curve unchanged. You can control these factors in the scenario files located in the `scenarios` folder. Two example scenarios are provided already: `door_open.yaml` includes a door opening event using a simple onoff thermostat, and `cold_morning.yaml` provides an especially cold morning with a predictive onoff thermostat.
 
 To run the simulation, you need to call the provided `main.py` file with a specific scenario as input. You do this in the CLI with this command:
 
@@ -24,9 +24,9 @@ env:
   base: # Base outside temperature (C)
   amplitude: # Amplitude of outside temperature variation (C)
   period_s: # Period of outside temperature variation (s)
-  door_drop_C: # Temperature drop when door opens (C)
   door_start_s: # Time when door opens (s)
   door_duration_s: # Duration of door opening (s)
+  door_exchange_tau_s: # Time constant for extra indoor/outdoor heat exchange while open (s)
 
 sensor:
   sigma: # Standard deviation of sensor noise (C)
